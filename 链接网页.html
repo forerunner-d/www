@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>next</title>
+    <style>
+        .news-title:hover {
+            color: blue;
+        }
+
+        .news-date:hover {
+            color: blue;
+        }
+
+        .logo {
+            position: absolute;
+            left: 0px;
+            width: 340px;
+            height: 70px;
+            top: 0px;
+            z-index: 1000;
+        }
+
+        .little {
+            position: absolute;
+            top: 30px;
+            right: 0px;
+            padding: 10px;
+            font-size: small;
+            opacity: 0.5;
+            z-index: 1000;
+        }
+
+        .search-container {
+            z-index: 1000;
+            position: absolute;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            z-index: 1000;
+        }
+
+        .bar {
+            width: 115px;
+            height: 70px;
+            color: white;
+            background-color: #085996;
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1000;
+            /* 设置较高的 z-index 值，确保显示在最上层 */
+            /* 为子菜单提供定位参考 */
+        }
+
+        /* 菜单样式，初始隐藏 */
+        .sub-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #085996;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            min-width: 100%;
+        }
+
+        /* 菜单项样式 */
+        .sub-menu-item {
+            padding: 10px;
+            white-space: nowrap;
+        }
+
+        /* 鼠标悬停在 .bar 上时显示菜单 */
+        .bar:hover .sub-menu {
+            display: block;
+        }
+
+        body {
+            margin: 0;
+            overflow: hidden;
+            /* 隐藏滚动条 */
+            height: 100vh;
+            /* 设置 body 高度为视口高度 */
+        }
+
+        .page {
+            height: 100vh;
+            /* 每个页面高度为视口高度 */
+            display: flex;
+            background-image: url('img/背景.jpg');
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 1s ease;
+            pointer-events: none;
+        }
+
+        .page.active {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        #page1 {
+
+            padding: 0;
+            /* 去除默认内边距 */
+        }
+
+        .activity-info{
+            position: absolute;
+            top: 15vh;
+            justify-content: center;
+            align-items: center;
+            width:80vh;
+            z-index: 1000;
+        }
+        .centered-bold-heading {
+        position: absolute; 
+        top: 10vh;   
+        left: 35vh;
+        text-align: center;
+        font-weight: bold;
+    }
+    .indent-two-char {
+        text-indent: 2em; /* 设置段落首行缩进 2 个字符 */
+    }
+
+    .text-container {
+        position: absolute; /* 设置为相对定位 */
+        top: 20vh; /* 向下移动 100px */
+        left: 45vh;
+        width: 80vh; /* 宽度为视口宽度的 80% */;
+        padding: 20px; /* 添加内边距 */ 
+        text-align: center;
+    }
+
+    </style>
+</head>
+
+<body>
+    <!-- 第一部分改为轮播图 -->
+    <div class="page">
+        <div style="position:absolute;color: #0b6cb8; height: 20;width: 100%; display: flex; justify-content: center;">
+            <div class="bar">
+                <a href="index.html">
+                    首页
+                </a>
+            </div>
+            <div class="bar">
+                学院概况
+                <div class="sub-menu">
+                    <div class="sub-menu-item">学院简介</div>
+                    <div class="sub-menu-item">院长致辞</div>
+                    <div class="sub-menu-item">学院领导</div>
+                    <div class="sub-menu-item">教授委员会</div>
+                    <div class="sub-menu-item">教务委员会</div>
+                    <div class="sub-menu-item">学位评定分委员会</div>
+                </div>
+            </div>
+            <div class="bar">
+                机构设置
+                <div class="sub-menu">
+                    <div class="sub-menu-item">计算机科学系</div>
+                    <div class="sub-menu-item">教育技术系</div>
+                    <div class="sub-menu-item">信息管理系</div>
+                    <div class="sub-menu-item">智能科学与技术系</div>
+                    <div class="sub-menu-item">计算机教研中心</div>
+                </div>
+            </div>
+            <div class="bar">
+                党群工作
+                <div class="sub-menu">
+                    <div class="sub-menu-item">党委介绍</div>
+                    <div class="sub-menu-item">机构设置</div>
+                    <div class="sub-menu-item">规章制度</div>
+                    <div class="sub-menu-item">学习园地</div>
+                    <div class="sub-menu-item">党群活动</div>
+                </div>
+            </div>
+            <div class="bar">
+                教职员工
+                <div class="sub-menu">
+                    <div class="sub-menu-item">师资队伍</div>
+                    <div class="sub-menu-item">行政管理</div>
+                    <div class="sub-menu-item">光荣退休</div>
+                </div>
+            </div>
+            <div class="bar">
+                本科生教育
+                <div class="sub-menu">
+                    <div class="sub-menu-item">专业设置</div>
+                    <div class="sub-menu-item">课程计划</div>
+                    <div class="sub-menu-item">课程描述</div>
+                    <div class="sub-menu-item">教学课表</div>
+                    <div class="sub-menu-item">选课指南</div>
+                    <div class="sub-menu-item">教学日程</div>
+                </div>
+            </div>
+            <div class="bar">
+                研究生教育
+                <div class="sub-menu">
+                    <div class="sub-menu-item">专业设置</div>
+                    <div class="sub-menu-item">培养方案</div>
+                    <div class="sub-menu-item">教学课表</div>
+                    <div class="sub-menu-item">教学日程</div>
+                    <div class="sub-menu-item">规章制度</div>
+                    <div class="sub-menu-item">硕士研究生导师</div>
+                    <div class="sub-menu-item">博士研究生导师</div>
+                    <div class="sub-menu-item">学位论文答辩信息</div>
+                </div>
+            </div>
+            <div class="bar">
+                科学研究
+                <div class="sub-menu">
+                    <div class="sub-menu-item">科研概况</div>
+                    <div class="sub-menu-item">研究方向</div>
+                    <div class="sub-menu-item">承担项目</div>
+                    <div class="sub-menu-item">科研活动</div>
+                    <div class="sub-menu-item">科研平台</div>
+                </div>
+            </div>
+            <div class="bar">
+                国际合作
+                <div class="sub-menu">
+                    <div class="sub-menu-item">中美合作办学</div>
+                    <div class="sub-menu-item">国际交流</div>
+                    <div class="sub-menu-item">外事活动</div>
+                    <div class="sub-menu-item">留学生信息</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="little">
+            师大首页 | 联系我们 | 本站导航 | 旧版回顾 | English
+        </div>
+        <img class="logo" src="img/学院名称.png">
+        <div class="search-container" style="position: absolute; top: 0px;right: 0px;">
+            <input type="text" placeholder="请输入关键字搜索"
+                style="border-radius: 15px; width: 270px; height: 30px; border: 1px solid rgba(0, 0, 0, 0.5);">
+            <img class="search-icon" src="img/放大镜.png">
+        </div>
+
+    </div>
+    <script>
+        const pages = document.querySelectorAll('.page');
+        let currentPage = 0;
+        let isScrolling = false;
+
+        // 轮播图相关变量
+        const carouselItems = document.querySelectorAll('#page1 .carousel-item');
+        let currentSlide = 0;
+        const prevButton = document.querySelector('#page1 .carousel-arrow.prev');
+        const nextButton = document.querySelector('#page1 .carousel-arrow.next');
+        const carouselTexts = document.querySelectorAll('.carousel-text span');
+
+        // 添加定时器变量
+        let carouselInterval;
+
+        // 获取 list2 元素
+        const list2 = document.querySelector('.list2');
+
+        window.addEventListener('DOMContentLoaded', () => {
+            showPage(currentPage);
+            updateCarouselText();
+            // 启动自动切换
+            startCarouselAutoPlay();
+        });
+
+        function showPage(pageIndex) {
+            if (isScrolling) return;
+            isScrolling = true;
+
+            pages.forEach((page, index) => {
+                if (index === pageIndex) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
+                }
+            });
+
+            setTimeout(() => {
+                isScrolling = false;
+            }, 1000);
+        }
+
+        window.addEventListener('wheel', (e) => {
+            // 判断滚轮事件是否在 list2 内部发生
+            if (list2 && list2.contains(e.target)) {
+                return; // 如果在 list2 内部，不执行页面切换逻辑
+            }
+
+            if (e.deltaY > 0 && currentPage < pages.length - 1) {
+                currentPage++;
+            } else if (e.deltaY < 0 && currentPage > 0) {
+                currentPage--;
+            }
+            showPage(currentPage);
+        });
+
+        // 切换轮播项函数
+        function showSlide(slideIndex) {
+            currentSlide = slideIndex;
+            carouselItems.forEach((item, index) => {
+                if (index === slideIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            updateCarouselText();
+        }
+
+        // 更新右下角文字样式
+        function updateCarouselText() {
+            carouselTexts.forEach((text, index) => {
+                if (index === currentSlide) {
+                    text.textContent = text.textContent.replace('——', '') + '——';
+                    text.classList.add('active');
+                } else {
+                    text.textContent = text.textContent.replace('——', '');
+                    text.classList.remove('active');
+                }
+            });
+        }
+
+        // 启动自动切换
+        function startCarouselAutoPlay() {
+            carouselInterval = setInterval(() => {
+                currentSlide = (currentSlide + 1) % carouselItems.length;
+                showSlide(currentSlide);
+            }, 3000); // 每 3 秒切换一次
+        }
+
+        // 停止自动切换
+        function stopCarouselAutoPlay() {
+            clearInterval(carouselInterval);
+        }
+
+        // 上一页按钮点击事件
+        prevButton.addEventListener('click', () => {
+            stopCarouselAutoPlay(); // 点击按钮时停止自动切换
+            currentSlide = (currentSlide - 1 + carouselItems.length) % carouselItems.length;
+            showSlide(currentSlide);
+            startCarouselAutoPlay(); // 点击后重新启动自动切换
+        });
+
+        // 下一页按钮点击事件
+        nextButton.addEventListener('click', () => {
+            stopCarouselAutoPlay(); // 点击按钮时停止自动切换
+            currentSlide = (currentSlide + 1) % carouselItems.length;
+            showSlide(currentSlide);
+            startCarouselAutoPlay(); // 点击后重新启动自动切换
+        });
+
+        // 为每个文字添加点击事件
+        carouselTexts.forEach((text, index) => {
+            text.addEventListener('click', () => {
+                stopCarouselAutoPlay(); // 点击文字时停止自动切换
+                showSlide(index);
+                startCarouselAutoPlay(); // 点击后重新启动自动切换
+            });
+        });
+        async function loadMenu() {
+            const response = await fetch('menu-template.html');
+            const menuHtml = await response.text();
+            const menuContainers = document.querySelectorAll('#menu-container');
+            menuContainers.forEach(container => {
+                container.innerHTML = menuHtml;
+            });
+        }
+
+        window.addEventListener('DOMContentLoaded', loadMenu);
+
+
+    </script>
+    <!-- 添加活动信息 -->
+    <h1 class="centered-bold-heading">教师第一、二党支部开展联动活动 ——“迎评应会知识学习”周某日活动</h1>
+    <p style="position: absolute; text-align: center; opacity: 0.5; font-size: smaller;top:17vh;left: 80vh;">作者： 时间：2025-05-28 点击数：302</p>
+    <div class="text-container">
+            
+        
+        
+        
+        <p class="indent-two-char" style=" z-index: 1000;">以新一轮本科教育教学审核评估为实现，我院教师第一、二党支部于近日联合举办了“迎评应会知识学习”周某日活动。</p>
+        <p class="indent-two-char" style=" z-index: 1000;">活动首先进行的是两支部支委领学分享环节。王姣、万川、张哲、侯鲲、齐妙五名支委在会前自学基础上，分别领学“东北师范大学质保理念、质量文化、教风、学风”“新一轮本科教育教学审核评估的目标意义、基本原则、主要内容及特点”“新一轮本科教育教学审核评估的重点知识、关键要点和热点名词”“东北师范大学本科教育教学评估工作方案与本科教学质量年实施方案”“新一轮本科教育教学审核评估中学院、教师和学生如何做好准备工作”等内容；随后，两支部教师围绕立德树人根本任务，结合学习内容开展了讨论，党委书记郑燕林进行了本科教学审核评估相关知识的补充和深入讲解。教师第一党支部王姣主持活动。</p>
+        <p class="indent-two-char" style=" z-index: 1000;">本次支部联动活动的开展，充分体现了教师一二党支部坚持cdfa linemanship、问题驱动，着力把党建融入业务工作、融入党员需求、融入群众关切，推进党建与业务深度融合的使命感和自觉性，发挥了党支部在推动业务工作、服务中心工作中的战斗堡垒作用。</p>
+        <p style="text-align: right; z-index: 1000;">初审：王姣</p>
+        <p style="text-align: right; z-index: 1000;">复审：滕继波</p>
+        <p style="text-align: right; z-index: 1000;">终审：郑燕林</p>
+    </div>
+</body>
+
+</html>
